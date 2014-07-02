@@ -1,2 +1,13 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>User</h1>
+<h3>Username: <%= @user.username %></h3>
+<ul>
+	<li>Location: <%= @user.location %></li>
+	<li>Bio: <%= @user.bio %></li>
+</ul>
+<% if @user.id == current_user %>
+	<p><%= link_to "Edit Profile", edit_user_path(@user)%></p>
+<% else %>
+	
+<%end%>
+<br>
+<h3><%= "#{@user.username}'s Posts" %></h3>
