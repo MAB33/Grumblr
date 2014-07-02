@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'sessions/new'
 
   get 'users/index'
@@ -8,6 +9,19 @@ Rails.application.routes.draw do
   get 'users/edit'
 
   get 'users/show'
+
+  get 'posts/edit'
+
+  get 'posts/new'
+
+  get 'posts/show'
+
+  get 'comments/edit'
+
+  get 'comments/new'
+
+  get 'comments/show'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
