@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-before_action(:set_post only: [:show, :edit, :create])
+  before_action(:set_post, only: [:show, :edit, :create])
 
 
   def show
@@ -53,6 +53,7 @@ before_action(:set_post only: [:show, :edit, :create])
   	end
   end
 
+private
 
   def post_params
   	params.require(:post).permit(:body)
@@ -61,8 +62,6 @@ before_action(:set_post only: [:show, :edit, :create])
   def set_post
   	@post = Post.find(params[:id])
   end
-
-
 
 
 end
