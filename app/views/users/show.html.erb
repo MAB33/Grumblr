@@ -16,8 +16,10 @@
 	<% end %>
 </ul>
 
-<%= form_tag('grumble', method: 'post') do %>
-	<%= label_tag(:body, "New Post")%><br>
-	<%= text_area_tag(:body)%><br>
-	<%= submit_tag "Post"%>
+<h1>New Post</h1>
+<%= form_for(@post) do |f| %>
+	<%= f.label :body %><br />
+	<%= f.text_area :body %><br />
+	<%= f.submit :post %>
 <% end %>
+

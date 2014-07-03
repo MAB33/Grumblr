@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action(:set_post, only: [:show, :edit, :create])
+  before_action(:set_post, only: [:show, :edit, :destroy])
 
 
   def show
@@ -21,13 +21,13 @@ class PostsController < ApplicationController
 
   def create
   	@post = Post.new(post_params)
-  	@post.user = User.find(sessions[:user_id])
+  	@post.user = User.find(session[:user_id])
   	if @post.save
   		flash[:notice] = "Grumblrrrrr"
   		redirect_to @post.user
   	else
   		flash[:alert] = "Do over"
-  		redirect_to posts_new_path
+  		redirect_to @post.user
   	end
   end
 
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   		redirect_to @post.user
   	else
   		flash[:alert] = "Do over"
-  		redirect_to edit_posts_path(@user)
+  		redirect_to @post.user
   	end
   end
 
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
   def destroy
   	if @post.delete
   		flash[:notice] = "Delete successful!!"
-  		redirect_to @post_user
+  		redirect_to @post.user
   	else
   		flash[:alert] = "Do over"
   		redirect_to :back

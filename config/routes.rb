@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   delete 'logout' => 'sessions#destroy'
 
-  post 'grumble' => 'posts#new'
+  
 
 
   # get 'sessions/new'
