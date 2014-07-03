@@ -4,19 +4,27 @@
 	<li>Location: <%= @user.location %></li>
 	<li>Bio: <%= @user.bio %></li>
 </ul>
-<% if @user.id == current_user.id %>
+<% if auth_user %>
 	<p><%= link_to "Edit Profile", edit_user_path(@user)%></p>
 <% else %>
 <%end%>
 
-<h3><%= "Grumbles from #{@user.username}" %></h3>
+<h3><%= "Grumbles from: #{@user.username}" %></h3>
 <ul>
-	<% @user.posts.each do |post| %> <!-- there is an activerecord method that allows you to use user.chirps -->
-	<li><%= post.body %> (<%= link_to "X", post_path(post), method: "delete" %>)</li>
+	<% @user.posts.each do |post| %> 
+	<li><%= post.body %>
+	<% if auth_user %>
+		(<%= link_to "X", post_path(post), method: "delete" %>)
+		<% else %>
+		<% end %>
+		| <%= link_to "Comment", post_path(post) %> </li>
+		<br>
+		
+	</li>
 	<% end %>
 </ul>
 
-<% if @user.id == current_user.id %>
+<% if auth_user %>
 	<%= form_for(@post) do |f| %>
 	<h3><%= f.label "New Grumble"%></h3> <br />
 	<%= f.text_area :body %><br />
