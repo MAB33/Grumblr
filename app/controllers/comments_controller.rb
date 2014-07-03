@@ -11,11 +11,12 @@ class CommentsController < ApplicationController
   def create
   	@comment = Comment.new(comment_params)
   	@comment.user = User.find(session[:user_id])
-  	@comment.post = Post.find(params[:id])
+  	@comment.post = Post.find(params[:post_id])
     # @comment.post_id = @post.id  #error
     # @comment.post = Post.find(params[:id])  #error
     # @comment.post = params[:id]  #post id is nil
     # @comment.post_id = params[:post_id]  #post id is nil
+
   	if @comment.save
   		flash[:notice] = "Comment added."
   		redirect_to root_path
