@@ -4,10 +4,9 @@
 	<li>Location: <%= @user.location %></li>
 	<li>Bio: <%= @user.bio %></li>
 </ul>
-<% if @user.id == current_user %>
+<% if @user.id == current_user.id %>
 	<p><%= link_to "Edit Profile", edit_user_path(@user)%></p>
 <% else %>
-	
 <%end%>
 <br>
 <h3><%= "#{@user.username}'s Posts" %></h3>

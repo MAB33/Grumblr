@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update]
+	before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -37,17 +37,23 @@ class UsersController < ApplicationController
         redirect_to @user
       end
     else
-      flash[:alert] = "Hey, this isn't you! You can't update this! I don't even know how you got this far!"
+      flash[:alert] = "Hey, this isn't you! You can't update this!"
       redirect_to @user
     end
   end
 
   def destroy
-    if @user.delete
-      flash[:notice] = "User has been deleted."
-      redirect_to users_path
+    if @user.id == session[:user_id]
+      if @user.delete
+        session[:user_id] = nil
+        flash[:notice] = "User has been deleted."
+        redirect_to root_path
+      else
+        flash[:alert] = "There was a problem deleting your account."
+        redirect_to @user
+      end
     else
-      flash[:alert] = "There was a problem deleting your account."
+      flash[:alert] = "Hey, this isn't you! You can't delete this!"
       redirect_to @user
     end
   end
