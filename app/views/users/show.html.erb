@@ -10,18 +10,26 @@
 <%end%>
 
 <h3><%= "Grumbles from: #{@user.username}" %></h3>
-<ul>
+<ul id="postFeed">
 	<% @user.posts.each do |post| %> 
 	<li><%= post.body %>
 	<% if auth_user %>
 		(<%= link_to "X", post_path(post), method: "delete" %>)
 		<% else %>
 		<% end %>
-		| <%= link_to "Comment", post_path(post) %> </li>
-		<br>
-		
+		| <%= link_to "Comment", post_path(post) %> 
+		<% if post.comments %>
+			<ul id="postComments">
+				<% post.comments.each do |comment| %>
+					<li><%= comment.body %></li>
+				<% end %>
+			
+			</ul>
+		<%else%>
+		<%end%>
 	</li>
 	<% end %>
+
 </ul>
 
 <% if auth_user %>

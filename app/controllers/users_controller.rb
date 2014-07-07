@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user
       flash[:notice] = "Your account has been created!"
       session[:user_id] = @user.id
-      redirect_to users_path(@user)
+      redirect_to user_path(@user)
     else 
       flash[:alert] = "There was a problem creating your account. Please try again."
       redirect_to new_user_path
