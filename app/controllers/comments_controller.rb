@@ -28,10 +28,10 @@ class CommentsController < ApplicationController
   def update
   	if @comment.update(post_params)
   		flash[:notice] = "Update successful!!"
-  		redirect_to @post.user
+  		redirect_to @comment.post.user
   	else
   		flash[:alert] = "Do over"
-  		redirect_to @post.user
+  		redirect_to @comment.post.user
   	end
   end
 
@@ -39,10 +39,10 @@ class CommentsController < ApplicationController
   def destroy
   	if @comment.delete
   		flash[:notice] = "Delete successful!!"
-  		redirect_to @post.user
+  		redirect_to @comment.post
   	else
   		flash[:alert] = "Do over"
-  		redirect_to :back
+  		redirect_to @comment.post
   	end
   end
 

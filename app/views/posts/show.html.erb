@@ -1,7 +1,7 @@
 <p><%= @post.body %></p>
 
 <%= form_for(@comment, url: post_comments_path(@post)) do |f| %>
-<h3><%= f.label "Add your two cents:"%></h3> <br />
+<h3><%= f.label "Add your comment:"%></h3> <br />
 <%= f.text_area :body %><br />
 <%= f.submit :comment %>
 <% end %>
